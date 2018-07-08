@@ -1,24 +1,32 @@
-# README
+# QuizMaster
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+QuizMaster for Server Side
 
-Things you may want to cover:
+## Build Setup
 
-* Ruby version
+### setup application
 
-* System dependencies
+``` bash
+# clone project
+$ git clone git@github.com:midwhite/QuizMaster.git
 
-* Configuration
+# install dependencies
+$ bundle install --path vendor/bundle
+```
 
-* Database creation
+### set environment variables
+Set environment variables below (You can use .env file):
 
-* Database initialization
+- LOCAL_DATABASE_PASSWORD (if you need password to use local mysql)
 
-* How to run the test suite
+``` bash
+# setup database
+$ bundle exec rails db:create
+$ bundle exec rails db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+# build for development
+$ bundle exec rails s
 
-* Deployment instructions
-
-* ...
+# run tests
+$ bundle exec rspec
+```
