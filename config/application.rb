@@ -26,5 +26,11 @@ module QuizMaster
     config.active_record.default_timezone = :utc
 
     config.api_only = true
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: true, controller_specs: false, request_specs: true
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+    end
   end
 end
