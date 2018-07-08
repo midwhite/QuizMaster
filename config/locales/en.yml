@@ -1,2 +1,4 @@
 en:
-  hello: "Hello world"
+  application_controller:
+    check:
+      success: "Success."

@@ -1,2 +1,4 @@
 ja:
-  hello: こんにちは、世界！
+  application_controller:
+    check:
+      success: 成功しました
