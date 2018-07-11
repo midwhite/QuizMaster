@@ -21,3 +21,7 @@ en:
       not_found: We're sorry but we couldn't find what you're looking for.
     render_500:
       unexpected_error: The server has some error. Please try again later.
+  users_controller:
+    login:
+      email_not_found: Email is not registered. Please sign up.
+      wrong_password: Password is wrong. Please confirm again.

@@ -21,3 +21,7 @@ ja:
       not_found: 申し訳ありません。お探しのものが見つかりませんでした。
     render_500:
       unexpected_error: 申し訳ありません。サーバーでエラーが発生しています。時間をおいて再度お試しください。
+  users_controller:
+    login:
+      email_not_found: 登録されていないメールアドレスです。
+      wrong_password: パスワードが間違っています。

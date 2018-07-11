@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   def me
     self.detail.merge(
+      email: self.email,
       birthday: self.birthday,
       access_token: self.access_token,
     )
