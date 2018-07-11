@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 
   scope "/:locale" do
     namespace :v1, defaults: { format: :json } do
-      resources :users, only: [:create] do
-        get :me
+      resources :users, only: [] do
+        collection do
+          post :sign_up
+          post :login
+          get :me
+        end
       end
       resources :quizzes
     end

@@ -1,4 +1,19 @@
 en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        access_token: access token
+        area: area
+        birthday: birthday
+        email: email
+        gender: gender
+        name: username
+        password: password
+        password_confirmation: password (Confirmation)
+        profile: profile
+        registered_at: registration date
   application_controller:
     check:
       success: "Success."

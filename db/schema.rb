@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_133323) do
     t.integer "gender"
     t.date "birthday"
     t.text "profile"
-    t.string "access_token", null: false
+    t.string "access_token"
     t.datetime "registered_at"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false

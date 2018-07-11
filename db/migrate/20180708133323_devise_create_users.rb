@@ -38,7 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.date :birthday
       t.text :profile
 
-      t.string :access_token, null: false
+      t.string :access_token
 
       t.datetime :registered_at
       t.datetime :deleted_at

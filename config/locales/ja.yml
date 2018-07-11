@@ -1,4 +1,19 @@
 ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        access_token: アクセストークン
+        area: エリア
+        birthday: 誕生日
+        email: メールアドレス
+        gender: 性別
+        name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        profile: プロフィール
+        registered_at: 登録日
   application_controller:
     check:
       success: 成功しました
