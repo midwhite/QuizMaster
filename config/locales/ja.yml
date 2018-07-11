@@ -17,3 +17,7 @@ ja:
   application_controller:
     check:
       success: 成功しました
+    render_404:
+      not_found: 申し訳ありません。お探しのものが見つかりませんでした。
+    render_500:
+      unexpected_error: 申し訳ありません。サーバーでエラーが発生しています。時間をおいて再度お試しください。

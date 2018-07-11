@@ -1,9 +1,22 @@
 class ApplicationController < ActionController::API
+  rescue_from ActionController::RoutingError, with: :render_404 if !Rails.env.development?
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404   if !Rails.env.development?
+  rescue_from Exception, with: :render_500                      if !Rails.env.development?
+
   before_action :set_locale
   before_action :sign_in_user, except: [:check]
 
   def check
     render json: { message: t(".success") }
+  end
+
+  def render_404
+    render status: :not_found, json: { errors: [t("application_controller.render_404.not_found")] }
+  end
+
+  def render_500
+    # [TODO] エラー通知システム
+    render status: 500, json: { errors: [t("application_controller.render_500.unexpected_error")] }
   end
 
   private
