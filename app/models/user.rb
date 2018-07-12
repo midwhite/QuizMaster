@@ -32,7 +32,7 @@ class User < ApplicationRecord
   def age
     return nil if self.birthday.blank?
     date_format = "%Y%m%d"
-    (Date.today.strftime(date_format).to_i - self.birthday.strftime(date_format).to_i) / 10000
+    (I18n.l(Time.now).in_time_zone.strftime(date_format).to_i - self.birthday.strftime(date_format).to_i) / 10000
   end
 
   private
