@@ -18,6 +18,11 @@ $ bundle install --path vendor/bundle
 Set environment variables below (You can use .env file):
 
 - LOCAL_DATABASE_PASSWORD (if you need password to use local mysql)
+- SECRET_KEY_BASE (use the command below to generate)
+
+``` bash
+$ echo SECRET_KEY_BASE=`bundle exec rails secret` >> .env
+```
 
 ``` bash
 # setup database
