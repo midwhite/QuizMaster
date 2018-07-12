@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, only: []
   root controller: :application, action: :check
 
-  scope "/:locale" do
+  scope "/:locale", defaults: { locale: :en } do
     namespace :v1, defaults: { format: :json } do
       resources :users, only: [] do
         collection do
