@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   enum gender: [:male, :female, :x_gender]
 
+  acts_as_paranoid
+
   after_create :set_access_token!
 
   def response
@@ -24,7 +26,7 @@ class User < ApplicationRecord
   def me
     self.detail.merge(
       email: self.email,
-      birthday: self.birthday,
+      birthday: (self.birthday && I18n.l(self.birthday) || ""),
       access_token: self.access_token,
     )
   end
