@@ -7,7 +7,7 @@ describe ApplicationController, type: :request do
       body = JSON.parse(response.body, symbolize_names: true)
       I18n.locale = :en
       expect(response.status).to eq(200)
-      expect(body[:message]).to eq(I18n.t("application_controller.check.success"))
+      expect(body[:message]).to eq(I18n.t("application_controller.check.success", locale: :en))
     end
 
     it "returns success message in Japanese" do
@@ -15,7 +15,7 @@ describe ApplicationController, type: :request do
       body = JSON.parse(response.body, symbolize_names: true)
       I18n.locale = :ja
       expect(response.status).to eq(200)
-      expect(body[:message]).to eq(I18n.t("application_controller.check.success"))
+      expect(body[:message]).to eq(I18n.t("application_controller.check.success", locale: :ja))
     end
   end
 end
