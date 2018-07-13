@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
-  rescue_from ActionController::RoutingError, with: :render_404 if !Rails.env.development?
-  rescue_from ActiveRecord::RecordNotFound, with: :render_404   if !Rails.env.development?
-  rescue_from Exception, with: :render_500                      if !Rails.env.development?
+  rescue_from ActionController::RoutingError, with: :render_404 if Rails.env.production?
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404   if Rails.env.production?
+  rescue_from Exception, with: :render_500                      if Rails.env.production?
 
   before_action :set_locale
   before_action :sign_in_user, except: [:check]
@@ -56,6 +56,6 @@ class ApplicationController < ActionController::API
   end
 
   def authenticate_error
-    render status: :unauthorized, json: { error: t("devise.failure.unauthenticated") }
+    render status: :unauthorized, json: { errors: [t("devise.failure.unauthenticated")] }
   end
 end

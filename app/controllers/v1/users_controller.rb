@@ -26,7 +26,8 @@ class V1::UsersController < ApplicationController
   end
 
   def me
-    render json: { user: user.me }
+    # [TODO] return status code 203 if user is not signed in
+    render json: { user: current_user.me }
   end
 
   private

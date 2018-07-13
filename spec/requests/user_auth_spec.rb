@@ -73,7 +73,7 @@ describe V1::UsersController, type: :request do
         post login_v1_users_url, params: { user: { email: user.email, password: password }}
         # check status code
         expect(response.code.to_i).to eq(200)
-        # check response
+        # check response body
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result).to eq({ user: user.me })
       end
@@ -96,6 +96,34 @@ describe V1::UsersController, type: :request do
         # check error message
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result[:errors]).to include(I18n.t("users_controller.login.wrong_password"))
+      end
+    end
+  end
+
+  describe "login" do
+    context "Normal Case" do
+      let(:user) { create(:user) }
+      let(:headers) {{ Authorization: user.access_token }}
+
+      it "succeeds in getting user information" do
+        get me_v1_users_url, headers: headers
+        result = JSON.parse(response.body, symbolize_names: true)
+        # check status code
+        expect(response.code.to_i).to eq(200)
+        # check response body
+        expect(result).to eq({ user: user.me })
+      end
+    end
+
+    context "Error Case" do
+      example "user can't get information without Authorization header" do
+        user = create(:user)
+        get me_v1_users_url, headers: {}
+        # check status code
+        expect(response.code.to_i).to eq(401)
+        # check response body
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result[:errors]).to include("You need to sign in or sign up before continuing.")
       end
     end
   end
