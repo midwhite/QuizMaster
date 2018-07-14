@@ -5,7 +5,21 @@ class User < ApplicationRecord
 
   acts_as_paranoid
 
+  has_many :quizzes, dependent: :destroy
+
   after_create :set_access_token!
+
+  def my_quizzes(user, query = {})
+    quizzes = user.quizzes
+    # search
+    quizzes = quizzes.where(answer_type: query[:answer_type]) if query[:answer_type].present?
+    quizzes = quizzes.search(title_or_question_or_explanation_cont_all: query[:keywords]).result if query[:keywords].present?
+    # paging
+    quizzes = quizzes.page(query[:page]) if query[:page].present?
+    quizzes = quizzes.per(query[:limit] || 20) if query[:page].present?
+    # response
+    quizzes.eager_load(:user).order(id: :desc)
+  end
 
   def response
     {

@@ -1,0 +1,5 @@
+ja:
+  shared:
+    errors:
+      is_required: を入力してください。
+      not_found: ${resource}が見つかりませんでした。

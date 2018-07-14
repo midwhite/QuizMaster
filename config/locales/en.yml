@@ -1,8 +1,16 @@
 en:
   activerecord:
     models:
-      user: User
+      quiz: quiz
+      user: user
     attributes:
+      quiz:
+        correct_answer: answer
+        explanation: explanation
+        multi_answer_json: answers
+        question: question
+        title: title
+        user: user
       user:
         access_token: access token
         area: area

@@ -1,0 +1,5 @@
+en:
+  shared:
+    errors:
+      is_required: is required.
+      not_found: ${resource} is not found.

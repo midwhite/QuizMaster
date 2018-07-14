@@ -11,7 +11,9 @@ Rails.application.routes.draw do
           get :me
         end
       end
-      resources :quizzes
+      resources :quizzes, only: [:index, :create, :update, :destroy] do
+        post :check
+      end
     end
   end
 end

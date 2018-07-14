@@ -1,8 +1,16 @@
 ja:
   activerecord:
     models:
+      quiz: クイズ
       user: ユーザー
     attributes:
+      quiz:
+        correct_answer: 回答
+        explanation: 解説
+        multi_answer_json: 回答
+        question: 問題
+        title: タイトル
+        user: ユーザー
       user:
         access_token: アクセストークン
         area: エリア
