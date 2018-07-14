@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_13_124657) do
+ActiveRecord::Schema.define(version: 2018_07_14_124423) do
 
   create_table "quizzes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2018_07_13_124657) do
     t.integer "gender"
     t.date "birthday"
     t.text "profile"
+    t.string "timezone", default: "UTC", null: false
     t.string "access_token"
     t.datetime "registered_at"
     t.datetime "deleted_at"

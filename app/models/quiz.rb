@@ -19,7 +19,7 @@ class Quiz < ApplicationRecord
       isSelection: self.is_selection,
       hasMultiAnswers: self.has_multi_answers,
       canScorePartial: self.can_score_partial,
-      createdAt: I18n.l(self.created_at)
+      createdAt: self.created_at.strftime(Constants::RESPONSE_DATETIME_FORMAT)
     }
   end
 

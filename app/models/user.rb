@@ -40,7 +40,8 @@ class User < ApplicationRecord
   def me
     self.detail.merge(
       email: self.email,
-      birthday: (self.birthday && I18n.l(self.birthday) || ""),
+      birthday: (self.birthday && self.birthday.strftime(Constants::RESPONSE_DATE_FORMAT)),
+      timezone: self.timezone,
       access_token: self.access_token,
     )
   end
@@ -48,7 +49,8 @@ class User < ApplicationRecord
   def age
     return nil if self.birthday.blank?
     date_format = "%Y%m%d"
-    (I18n.l(Time.now).in_time_zone.strftime(date_format).to_i - self.birthday.strftime(date_format).to_i) / 10000
+    today = Time.use_zone(self.timezone || Constants::DEFAULT_TIMEZONE) { Time.zone.today }
+    (today.strftime(date_format).to_i - self.birthday.strftime(date_format).to_i) / 10000
   end
 
   private
