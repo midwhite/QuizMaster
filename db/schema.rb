@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_08_133323) do
+ActiveRecord::Schema.define(version: 2018_07_13_124657) do
+
+  create_table "quizzes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.text "question", null: false
+    t.string "correct_answer"
+    t.text "multi_answers_json"
+    t.boolean "is_selection", default: false, null: false
+    t.boolean "has_multi_answers", default: false, null: false
+    t.boolean "can_score_partial", default: false, null: false
+    t.text "explanation"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_quizzes_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,4 +47,5 @@ ActiveRecord::Schema.define(version: 2018_07_08_133323) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "quizzes", "users"
 end
