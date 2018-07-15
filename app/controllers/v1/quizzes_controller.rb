@@ -47,7 +47,8 @@ class V1::QuizzesController < ApplicationController
 
   def check
     # [TODO] add the logic to check answers
-    render json: {}
+    quiz = Quiz.find(params[:quiz_id])
+    render json: { quiz: quiz.response_with_answer, result: quiz.check(params[:answer][:content]) }
   end
 
   private

@@ -10,7 +10,10 @@ gem 'rack-cors'
 
 gem 'dotenv-rails'
 
-# ActiveModel拡張
+# Convert Number to Words
+gem 'numbers_and_words'
+
+# Expand ActiveModel
 gem 'devise'
 gem 'ransack'
 gem 'kaminari'
