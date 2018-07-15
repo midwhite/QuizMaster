@@ -7,7 +7,7 @@ en:
       quiz:
         correct_answer: answer
         explanation: explanation
-        multi_answer_json: answers
+        answer_options: options
         question: question
         title: title
         user: user

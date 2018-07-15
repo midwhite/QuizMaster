@@ -53,8 +53,7 @@ class V1::QuizzesController < ApplicationController
   private
   def quiz_params
     params.fetch(:quiz, {}).permit(
-      :title, :question, :correct_answer, :multi_answer_json, :explanation,
-      :is_selection, :has_multi_answers, :can_score_partial
+      :title, :question, :correct_answer, :answer_options, :explanation
     ).merge(user_id: current_user.id)
   end
 end

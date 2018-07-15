@@ -7,7 +7,7 @@ ja:
       quiz:
         correct_answer: 回答
         explanation: 解説
-        multi_answer_json: 回答
+        answer_options: 選択肢
         question: 問題
         title: タイトル
         user: ユーザー
