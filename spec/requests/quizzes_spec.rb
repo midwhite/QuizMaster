@@ -57,16 +57,40 @@ describe V1::QuizzesController, type: :request do
 
   describe "quizzes#check" do
     context "Normal Case" do
-      xit "can check correctness of answers" do
-        pending "Add spec for quizzes#check."
+      it "can check correctness of answers" do
+        quiz = create(:quiz, user: user, correct_answer: "I have a pen.")
+        params = { answer: { content: "I have a pen." } }
+        post v1_quiz_check_path(quiz), params: params, headers: headers
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result[:result]).to eq(true)
       end
 
-      xit "can check correctness of multiple answers" do
-        pending "Add spec for quizzes#check."
+      it "can check incorrectness of answers" do
+        quiz = create(:quiz, user: user, correct_answer: "I have a pen.")
+        params = { answer: { content: "I have a pineapple." } }
+        post v1_quiz_check_path(quiz), params: params, headers: headers
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result[:result]).to eq(false)
       end
 
-      xit "can recognize numbers also in words" do
-        pending "Add spec for quizzes#check."
+      it "can recognize words also in number" do
+        quiz = create(:quiz, user: user, correct_answer: "I have 11 pens.")
+        params = { answer: { content: "I have eleven pens." } }
+        post v1_quiz_check_path(quiz), params: params, headers: headers
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result[:result]).to eq(true)
+      end
+
+      it "can recognize numbers also in words" do
+        quiz = create(:quiz, user: user, correct_answer: "I have eleven pens.")
+        params = { answer: { content: "I have 11 pens." } }
+        post v1_quiz_check_path(quiz), params: params, headers: headers
+
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result[:result]).to eq(true)
       end
     end
   end
