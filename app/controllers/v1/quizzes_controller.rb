@@ -1,7 +1,7 @@
 class V1::QuizzesController < ApplicationController
   def index
     render json: {
-      quizzes: current_user.my_quizzes(current_user, params).map(&:response)
+      quizzes: current_user.my_quizzes(current_user, params).map(&:response_with_answer)
     }
   end
 
@@ -16,7 +16,7 @@ class V1::QuizzesController < ApplicationController
   end
 
   def update
-    quiz = Quiz.find_by(params[:id])
+    quiz = Quiz.find_by(id: params[:id])
 
     # check access permission
     unless quiz && quiz.editable_by?(current_user)
@@ -31,7 +31,7 @@ class V1::QuizzesController < ApplicationController
   end
 
   def destroy
-    quiz = Quiz.find_by(params[:id])
+    quiz = Quiz.find_by(id: params[:id])
 
     # check access permission
     unless quiz && quiz.editable_by?(current_user)

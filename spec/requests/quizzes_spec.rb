@@ -13,7 +13,7 @@ describe V1::QuizzesController, type: :request do
       expect(response.code.to_i).to eq(200)
       # check response body
       result = JSON.parse(response.body, symbolize_names: true)
-      expect(result[:quizzes]).to eq(quizzes.map(&:response))
+      expect(result[:quizzes]).to eq(quizzes.map(&:response_with_answer))
     end
   end
 
@@ -30,22 +30,22 @@ describe V1::QuizzesController, type: :request do
 
   describe "quizzes#update" do
     it "can update a quiz" do
-      quiz = create(:quiz)
+      quiz = create(:quiz, user: user)
       new_quiz_attr = attributes_for(:quiz)
       put v1_quiz_path(quiz), params: { quiz: new_quiz_attr }, headers: headers
       # check status code
       expect(response.code.to_i).to eq(200)
       # check data creation
       result = JSON.parse(response.body, symbolize_names: true)
-      [:title, :question, :explanation].each do |prop|
-        expect(result[:quiz][prop]).to eq(new_quiz_attr[prop])
-      end
+      expect(result[:quiz][:title]).to eq(new_quiz_attr[:title])
+      expect(result[:quiz][:question]).to eq(new_quiz_attr[:question])
+      expect(result[:quiz][:correctAnswer]).to eq(new_quiz_attr[:correct_answer])
     end
   end
 
   describe "quizzes#destroy" do
     it "can destroy a quiz" do
-      quiz = create(:quiz)
+      quiz = create(:quiz, user: user)
       # check data creation
       expect {
         delete v1_quiz_path(quiz), headers: headers

@@ -21,24 +21,22 @@ class Quiz < ApplicationRecord
 
   def response_with_answer
     self.response.merge(
-      answer: self.correct_answer,
+      correctAnswer: self.correct_answer,
       explanation: self.explanation
     )
   end
 
   def editable_by?(user)
-    if user && user.id === self.user_id
-      self.errors.add(:base, t("shared.errors.not_found"))
-      return false
-    else
-      return true
-    end
+    return true if user && user.id === self.user_id
+
+    self.errors.add(:base, I18n.t("shared.errors.not_found", resource: I18n.t("activerecord.models.quiz")))
+    return false
   end
 
   private
   def has_answer?
     if self.correct_answer.blank? && 
-      self.errors.add(:correct_answer, t("shared.errors.is_required"))
+      self.errors.add(:correct_answer, I18n.t("shared.errors.is_required"))
     end
   end
 
