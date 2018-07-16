@@ -93,5 +93,18 @@ describe V1::QuizzesController, type: :request do
         expect(result[:result]).to eq(true)
       end
     end
+
+    context "Error Case" do
+      it "returns error message if parameter doesn't meet requirements" do
+        quiz = create(:quiz, user: user)
+        post v1_quiz_check_path(quiz), headers: headers
+
+        # check status code
+        expect(response.code.to_i).to eq(400)
+        # check response body
+        result = JSON.parse(response.body, symbolize_names: true)
+        expect(result[:errors]).to include("Answer is required.")
+      end
+    end
   end
 end

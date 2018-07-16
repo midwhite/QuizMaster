@@ -33,3 +33,6 @@ ja:
     login:
       email_not_found: 登録されていないメールアドレスです。
       wrong_password: パスワードが間違っています。
+  quizzes_controller:
+    check:
+      answer_is_required: 回答情報は必須です。

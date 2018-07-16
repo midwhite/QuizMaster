@@ -33,3 +33,6 @@ en:
     login:
       email_not_found: Email is not registered. Please sign up.
       wrong_password: Password is wrong. Please confirm again.
+  quizzes_controller:
+    check:
+      answer_is_required: Answer is required.

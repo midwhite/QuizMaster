@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
   end
 
   def render_500
-    # [TODO] エラー通知システム
+    # [TODO] notify error to admin
     render status: 500, json: { errors: [t("application_controller.render_500.unexpected_error")] }
   end
 

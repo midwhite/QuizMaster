@@ -46,15 +46,23 @@ class V1::QuizzesController < ApplicationController
   end
 
   def check
-    # [TODO] add the logic to check answers
+    # check required parameters
+    unless params[:answer] && params[:answer][:content].present?
+      render status: :bad_request, json: { errors: [t(".answer_is_required")] } and return
+    end
+
+    # check answers' correctness
     quiz = Quiz.find(params[:quiz_id])
-    render json: { quiz: quiz.response_with_answer, result: quiz.check(params[:answer][:content]) }
+    render json: {
+      quiz: quiz.response_with_answer,
+      result: quiz.check(params[:answer][:content])
+    }
   end
 
   private
   def quiz_params
     params.fetch(:quiz, {}).permit(
-      :title, :question, :correct_answer, :answer_options, :explanation
+      :title, :question, :correct_answer, :explanation
     ).merge(user_id: current_user.id)
   end
 end
