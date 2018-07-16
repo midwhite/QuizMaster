@@ -1,6 +1,7 @@
 # QuizMaster
 
-Server Side for [quiz-master-app](https://github.com/midwhite/quiz-master-app)
+- Server Side for [quiz-master-app](https://github.com/midwhite/quiz-master-app)
+- Please read [this](https://github.com/midwhite/quiz-master-app/blob/master/README.md) to build front side app.
 
 ## Build Setup
 ### setup application
