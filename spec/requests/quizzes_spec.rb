@@ -62,6 +62,9 @@ describe V1::QuizzesController, type: :request do
         params = { answer: { content: "I have a pen." } }
         post v1_quiz_check_path(quiz), params: params, headers: headers
 
+        # check status code
+        expect(response.code.to_i).to eq(200)
+        # check response body
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result[:result]).to eq(true)
       end
@@ -71,6 +74,9 @@ describe V1::QuizzesController, type: :request do
         params = { answer: { content: "I have a pineapple." } }
         post v1_quiz_check_path(quiz), params: params, headers: headers
 
+        # check status code
+        expect(response.code.to_i).to eq(200)
+        # check response body
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result[:result]).to eq(false)
       end
@@ -80,6 +86,9 @@ describe V1::QuizzesController, type: :request do
         params = { answer: { content: "I have eleven pens." } }
         post v1_quiz_check_path(quiz), params: params, headers: headers
 
+        # check status code
+        expect(response.code.to_i).to eq(200)
+        # check response body
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result[:result]).to eq(true)
       end
@@ -89,6 +98,9 @@ describe V1::QuizzesController, type: :request do
         params = { answer: { content: "I have 11 pens." } }
         post v1_quiz_check_path(quiz), params: params, headers: headers
 
+        # check status code
+        expect(response.code.to_i).to eq(200)
+        # check response body
         result = JSON.parse(response.body, symbolize_names: true)
         expect(result[:result]).to eq(true)
       end
