@@ -9,6 +9,7 @@
 ```bash
 # clone project
 $ git clone git@github.com:midwhite/QuizMaster.git
+$ cd QuizMaster
 
 # install dependencies
 $ bundle install --path vendor/bundle
